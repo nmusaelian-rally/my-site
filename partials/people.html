@@ -1,0 +1,21 @@
+<div ng-model="page.name">
+    {{page.name}}
+</div>
+<div id="nav">
+    <a href="#/situations">situations</a>
+    <a href="#/little-neitzsche">little neitzsche</a>
+    <a href="#/ass-festival">the ass festival</a>
+    <a href="#/woodcuts">woodcuts</a>
+    
+    <div id="picture">
+            <img ng-src="{{currentImage.image}}" alt="{{currentImage.description}}">
+    </div>
+    <div id="thumbnailWrapper">
+        <ul id="thumbnails">
+            <li ng-repeat="image in images" ng-click="setCurrentImage(image)">
+                <img ng-src="{{image.thumbnail}}" alt="{{image.description}}">
+            </li>
+        </ul>
+    </div>
+    
+</div>

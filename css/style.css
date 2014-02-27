@@ -1,0 +1,45 @@
+#header {
+    width: 1000px;
+    position: relative;
+}
+
+#header h2 {
+    display: inline
+}
+
+#header select{
+    position: absolute;
+    right: 0;
+}
+
+#picture{
+    width:1000px ;
+    margin-bottom: 100px;
+}
+
+#picture img{
+    display: block;
+    margin:auto ;
+}
+
+#thumbnailWrapper{
+   width: 500px;
+   overflow: auto;
+}
+
+#thumbnails{
+    white-space: nowrap;
+    margin: 0px;
+}
+
+#thumbnails li{
+    display: inline;
+    list-style-type: none;
+    padding-left: 2px;
+    padding-right: 2px;
+    cursor: pointer;
+}
+
+#thumbnails li:hover {
+    opacity: 0.5
+}
