@@ -11,114 +11,81 @@ gallery.config(function($routeProvider){
 });
 
 
-
+gallery.factory('PictureGetter', function($http){
+    return {
+        getPictures: function(url,callback){
+            $http.get(url).success(callback);
+        }
+    }
+});
 
 var controllers = {};
 
-controllers.PeopleCtrl = function($scope, $http){
-    window.scope = $scope;
+controllers.PeopleCtrl = function($scope, PictureGetter){
     $scope.page = {name:'people'};
     $scope.url = './img/people/people.json';
-
-    $scope.images = [];
-    $scope.currentImage = {};
-
-    $scope.handleImagesLoaded = function(data, status){
-        $scope.images = data;
+    PictureGetter.getPictures($scope.url, function(pictures, status){
+        $scope.images = pictures;
         $scope.currentImage = $scope.images[0];
-    }
+        
+        $scope.setCurrentImage = function(image){
+            $scope.currentImage = image;
+        };
+    });                 
+}
 
-    $scope.fetch = function(){
-        $http.get($scope.url).success($scope.handleImagesLoaded)  ;
-    }
-
-    $scope.setCurrentImage = function(image){
-        $scope.currentImage = image;
-    };
-    $scope.fetch();
-                   
-};
-controllers.SituationsCtrl = function($scope, $http){
-    window.scope = $scope;
+controllers.SituationsCtrl = function($scope, PictureGetter){
     $scope.page = {name:'situations'};
     $scope.url = './img/situations/situations.json';
-
-    $scope.images = [];
-    $scope.currentImage = {};
-
-    $scope.handleImagesLoaded = function(data, status){
-        $scope.images = data;
+    PictureGetter.getPictures($scope.url, function(pictures, status){
+        $scope.images = pictures;
         $scope.currentImage = $scope.images[0];
-    }
+        
+        $scope.setCurrentImage = function(image){
+            $scope.currentImage = image;
+        };
+    });                 
+}
 
-    $scope.fetch = function(){
-        $http.get($scope.url).success($scope.handleImagesLoaded)  ;
-    }
-
-    $scope.setCurrentImage = function(image){
-        $scope.currentImage = image;
-    };
-    $scope.fetch();
-                   
-};
-
-controllers.LittleNeitzscheCtrl = function($scope, $http){
-    window.scope = $scope;
+controllers.LittleNeitzscheCtrl = function($scope, PictureGetter){
     $scope.page = {name:'little neitzsche'};
-};
+    $scope.url = './img/little-neitzsche/little-neitzsche.json';
+    PictureGetter.getPictures($scope.url, function(pictures, status){
+        $scope.images = pictures;
+        $scope.currentImage = $scope.images[0];
+        
+        $scope.setCurrentImage = function(image){
+            $scope.currentImage = image;
+        };
+    });                 
+}
 
-controllers.AssFestivalCtrl = function($scope, $http){
-    window.scope = $scope;
-    $scope.page = {name:'the ass festival'};
-    
-};
-controllers.WoodcutsCtrl = function($scope, $http){
-    window.scope = $scope;
+controllers.AssFestivalCtrl = function($scope, PictureGetter){
+    $scope.page = {name:'ass festival'};
+    $scope.url = './img/ass-festival/ass-festival.json';
+    PictureGetter.getPictures($scope.url, function(pictures, status){
+        $scope.images = pictures;
+        $scope.currentImage = $scope.images[0];
+        
+        $scope.setCurrentImage = function(image){
+            $scope.currentImage = image;
+        };
+    });                 
+}
+
+controllers.WoodcutsCtrl = function($scope, PictureGetter){
     $scope.page = {name:'woodcuts'};
-    
-};
+    $scope.url = './img/woodcuts/woodcuts.json';
+    PictureGetter.getPictures($scope.url, function(pictures, status){
+        $scope.images = pictures;
+        $scope.currentImage = $scope.images[0];
+        
+        $scope.setCurrentImage = function(image){
+            $scope.currentImage = image;
+        };
+    });                 
+}
+
                
 gallery.controller(controllers);
 
-/* TODO
-function AlbumCtrl($scope, $http){
-    $scope.url = 'images.json';
-    $scope.images = [];
-    $scope.imageCategories = [];
-    $scope.currentImage = {};
-
-    $scope.handleImagesLoaded = function(data, status){
-        $scope.images = data;
-        $scope.currentImage = _.first($scope.images);
-        $scope.imageCategories = _.uniq(_.pluck($scope.images, 'category') );
-    }
-
-    $scope.fetch = function(){
-        $http.get($scope.url).success($scope.handleImagesLoaded)  ;
-    }
-
-    $scope.setCurrentImage = function(image){
-        $scope.currentImage = image;
-    };
-    $scope.fetch();
-}
- **TODO
- $scope._Index=0;
-
-        $scope.isActive = function(index)  {
-            return $scope._Index === index;
-        }
-
-        $scope.showPrev = function(){
-            $scope._Index = ($scope._Index >0) ?  --$scope._Index : $scope.myPictures.length - 1;
-        }
-
-        $scope.showNext = function () {
-            $scope._Index = ($scope._Index < $scope.myPictures.length - 1) ? ++$scope._Index : 0;
-        }
-
-        $scope.showPicture = function(index){
-            $scope._Index = index;
-        }
- **
- **/
